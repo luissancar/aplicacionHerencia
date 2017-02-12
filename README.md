@@ -22,3 +22,20 @@ Para aplicar un modelo usamos una clase Python con un atributo __inherit. Este i
 
 Para modificar un modelo de Odoo obtenemos una referencia a la clase de registro y luego ejecutamos los cambios en ella. Esto significa que esas modificaciones también estarán disponibles en cualquier otro lado donde el modelo sea usado.
 
+Creamos el fichero herencia_model.py
+~~~  
+from openerp import models, fields, api
+class HerenciaModel(models.Model):
+    _inherit = 'aplicacionejemplo01.task''
+    user_id = fields.Many2one('res.users', 'Responsible')
+    date_deadline = fields.Date('Deadline')
+
+~~~   
+
+En __init__.py
+~~~   
+from . import aplicacionejemplo01_task'
+~~~   
+
+
+
