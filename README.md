@@ -177,7 +177,13 @@ Debemos agregar el atributo datos al archivo descriptor __openerp__.py:
 
 #  
 ##  
+  
 ###  
+  
 ####  
-#####
-######http://fundamentos-de-desarrollo-en-odoo.readthedocs.io/es/latest/capitulos/herencia-extendiendo-funcionalidad-aplicaciones-existentes.html
+  
+#####  
+  
+######  
+  
+########fundamentos-de-desarrollo-en-odoo.readthedocs.io/es/latest/capitulos/herencia-extendiendo-funcionalidad-aplicaciones-existentes.html
