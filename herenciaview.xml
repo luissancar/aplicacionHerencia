@@ -1,0 +1,16 @@
+<record id="view_form_herencia_inherited" model="ir.ui.view">
+    <field name="name">Herencia aplicación</field>
+    <field name="model">herencia.model</field>
+    <field name="inherit_id" ref="aplicacionEjemplo01.view_form_aplicacion_ejemplo01_task"/>
+    <field name="arch" type="xml">
+        <field name="name" position="after">
+            <field name="user_id" />
+        </field>
+        <field name="is_done" position="before">
+            <field name="date_deadline" />
+        </field>
+        <field name="name" position="attributes">
+            <attribute name="string">I have to…</attribute>
+        </field>
+    </field>
+</record>
