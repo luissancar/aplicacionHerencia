@@ -83,3 +83,87 @@ def do_toggle_done(self):
     else:
         return super(TodoTask, self).do_toggle_done()
 ~~~           
+
+
+# Ampliar las vistas  
+Debemos localizar los elementos XML y luego introducir modificaciones en esos puntos. 
+Una vista heredada se ve así:
+
+~~~  
+
+<record id="view_form_herencia_inherited" model="ir.ui.view">
+              <field name="name">Herencia aplicacion</field>
+              <field name="model">aplicacionejemplo01.task</field>  //modelo del padre
+              <field name="inherit_id" ref="aplicacionEjemplo01.view_form_aplicacion_ejemplo01_task"/>
+              <field name="arch" type="xml">
+                <field name="name" position="after">
+                  <field name="user_id" />
+                </field>..........
+              </field>
+          </record>
+El campo inherit_id identifica la vista que será ampliada, a través de la referencia de su identificador externo usando el atributo especial ref. 
+
+
+Tener atributos "name" en los elementos es importante porque los hace mucho más fácil de seleccionar como puntos de extensión. Una vez que el punto de extensión es localizado, puede ser modificado o puede tener elementos XML agregados cerca de él.
+
+Para agregar el campo date_deadline antes del campo is_done, debemos escribir:
+~~~  
+<field name="is_done" position="before">
+    <field name="date_deadline" />
+</field>
+~~~  
+Agregar campos nuevos, cerca de campos existentes es hecho frecuentemente, por lo tanto la etiqueta <field> es usada frecuentemente como el localizador. 
+
+El atributo de posición usado con el elemento localizador es opcional, y puede tener los siguientes valores: - after: Este es agregado al elemento padre, después del nodo de coincidencia. - before: Este es agregado al elemento padre, antes del nodo de coincidencia. - inside (el valor predeterminado): Este es anexado al contenido del nodo de coincidencia. - replace: Este reemplaza el nodo de coincidencia. Si es usado con un contenido vacío, borra un elemento. - attributes: Este modifica los atributos XML del elemento de coincidencia (más detalles luego de esta lista).
+
+La posición del atributo nos permite modificar los atributos del elemento de coincidencia. Esto es hecho usando los elementos 
+~~~  
+<attribute name="attr-name"> con los valores del atributo nuevo.
+~~~  
+En el formulario de Tareas, tenemos el campo Active, pero tenerlo visible no es muy útil. Quizás podamos esconderlo de la usuaria y el usuario. Esto puede ser realizado configurando su atributo invisible:
+
+~~~  
+<field name="active" position="attributes">
+    <attribute name="invisible">1<attribute/>
+</field>
+~~~  
+Configurar el atributo invisible para esconder un elemento es una buena alternativa para usar el localizador de reemplazo para eliminar nodos. Debería evitarse la eliminación, ya que puede dañar las extensiones de modelos que pueden depender del nodo eliminado.
+
+Finalmente, podemos poner todo junto, agregar los campos nuevos, y obtener la siguiente vista heredada completa para ampliar el formulario de tareas por hacer:
+~~~  
+
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+          <record id="view_form_herencia_inherited" model="ir.ui.view">
+              <field name="name">Herencia aplicacion</field>
+              <field name="model">aplicacionejemplo01.task</field>
+              <field name="inherit_id" ref="aplicacionEjemplo01.view_form_aplicacion_ejemplo01_task"/>
+              <field name="arch" type="xml">
+                <field name="name" position="after">
+                  <field name="user_id" />
+                </field>
+                <field name="is_done" position="before">
+                  <field name="date_deadline" />
+                </field>
+                <field name="name" position="attributes">
+                  <attribute name="string">I have to…</attribute>
+                </field>
+              </field>
+          </record>
+        </data>
+    </openerp>
+
+~~~  
+Esto debe ser agregado al archivo herenciaview.xml en nuestro módulo
+No podemos olvidar agregar el atributo datos al archivo descriptor __openerp__.py:
+~~~  
+'data': ['herenciaview.xml'],
+~~~  
+
+
+
+
+
+
+< http://fundamentos-de-desarrollo-en-odoo.readthedocs.io/es/latest/capitulos/herencia-extendiendo-funcionalidad-aplicaciones-existentes.html
