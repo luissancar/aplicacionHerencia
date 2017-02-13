@@ -102,7 +102,8 @@ Una vista heredada se ve así:
               </field>
           </record>
           
-          ~~~  
+          
+~~~  
 El campo inherit_id identifica la vista que será ampliada, a través de la referencia de su identificador externo usando el atributo especial ref. 
 
 
