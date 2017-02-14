@@ -1,6 +1,10 @@
 # Ejemplo Herencia Odoo  
 - Crearemos la estructura básica para el módulo.
+
+~~~   
 __openerp__.py  :  
+
+~~~   
 ~~~  
 {
     'name': 'Herencia aplicacionEjemplo01',
