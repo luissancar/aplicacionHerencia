@@ -10,7 +10,7 @@ __openerp__.py  :
 }
 
 ~~~   
-__init.__py  (en principio vacio)  
+__init__.py  (en principio vacio)  
 
 Instalamos la aplicación.  
 
