@@ -9,8 +9,10 @@ __openerp__.py  :
     'depends': ['aplicacionEjemplo01'],
 }
 
-~~~   
+~~~  
+~~~ 
 __init__.py  (en principio vacio)  
+~~~ 
 
 Instalamos la aplicación.  
 
@@ -32,8 +34,9 @@ class HerenciaModel(models.Model):
 
 ~~~   
 
-En __init__.py  
 ~~~   
+En __init__.py  
+
 from . import herencia_model
 ~~~   
 
