@@ -2,7 +2,7 @@
 - Crearemos la estructura básica para el módulo.
 
 ~~~   
-__openerp__.py  :  
+__init__.py  :  
 
 ~~~   
 ~~~  
